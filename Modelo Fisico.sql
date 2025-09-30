@@ -219,13 +219,13 @@ JOIN disciplina d ON l.disciplina_id = d.disciplina_id
 LEFT JOIN turma t ON l.turma_id = t.turma_id
 WHERE t.codigo = 'EM2025A';
 
-SELECT al.nome AS aluno, rp.nome AS responsavel, ra.parentesco
+SELECT al.nome AS aluno, rp.nome AS responsavel, r.parentesco
 FROM responsavel_aluno ra
 JOIN responsavel r ON ra.responsavel_id = r.responsavel_id
 JOIN pessoa rp ON r.responsavel_id = rp.pessoa_id
 JOIN aluno a ON ra.aluno_id = a.aluno_id
 JOIN pessoa al ON a.aluno_id = al.pessoa_id
-WHERE al.ra = 'RA2025001';
+WHERE a.ra = 'RA2025001';
 
 -- UPDATES
 UPDATE nota
@@ -235,3 +235,6 @@ WHERE nota_id = 1;
 UPDATE responsavel
 SET telefone = '(11)99999-1234'
 WHERE responsavel_id = 5;
+
+alter table responsavel_aluno 
+add column parentesco VARCHAR(50);
